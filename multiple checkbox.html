@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Checkboxes</title>
+</head>
+<body>
+    <form id="checkboxForm">
+        <input type="number" id="numberInput" min="1" placeholder="Enter a number">
+        <button type="submit">Generate</button>
+    </form>
+    <div id="checkboxContainer"></div>
+
+    <script>
+        const form = document.getElementById('checkboxForm');
+        const numberInput = document.getElementById('numberInput');
+        const checkboxContainer = document.getElementById('checkboxContainer');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const numberOfCheckboxes = parseInt(numberInput.value);
+
+            checkboxContainer.innerHTML = '';
+
+            for (let i = 0; i < numberOfCheckboxes; i++) {
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = 'checkbox' + (i + 1);
+                checkbox.name = 'checkbox' + (i + 1);
+
+                const label = document.createElement('label');
+                label.htmlFor = checkbox.id;
+                label.textContent = 'Checkbox ' + (i + 1);
+
+                const div = document.createElement('div');
+                div.appendChild(checkbox);
+                div.appendChild(label);
+
+                checkboxContainer.appendChild(div);
+            }
+        });
+    </script>
+</body>
+</html>
